@@ -65,7 +65,34 @@ def index():
         {% endfor %}
     </ul>
     """
+    html = """
+    <h1>📺 F1 S3 Video Highlights</h1>
+    <ul>
+        {% for file in files %}
+        <li><a href="{{ url_for('video_stream', video_key=file) }}">{{ file }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <h2>📊 Compare Telemetry (from FastF1)</h2>
+    <form action="/f1-dashboard/2025/China/HAM-vs-VER" method="get">
+        <button type="submit">View HAM vs VER – China 2025</button>
+    </form>
+
+    <hr>
+
+    <h2>🧠 Try Lap Time Prediction</h2>
+    <a href="/predict-lap">→ Predict a Single Lap</a>
+
+    <hr>
+
+    <h2>🏎️ Explore Strategy Simulation</h2>
+    <a href="/strategy-dashboard">→ Generate Strategy Comparison</a>
+    """
+
     return render_template_string(html, files=files)
+
 
 @app.route("/f1-dashboard/<int:year>/<race>/<driver1>-vs-<driver2>")
 def f1_dashboard(year, race, driver1, driver2):
