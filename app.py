@@ -5,6 +5,8 @@ import joblib
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+if not os.path.exists("f1_cache"):
+    os.makedirs("f1_cache")
 model = joblib.load('lap_time_model.pkl')
 driver_enc = joblib.load('Driver_encoder.pkl')
 team_enc = joblib.load('Team_encoder.pkl')
